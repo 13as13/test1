@@ -1,1 +1,185 @@
 
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+    <title>Crypto Challenge</title>
+
+
+</head>
+
+<body ng-app="myapp" ng-controller="tableController as ctrl">
+    <h1>Coin Tracker</h1>
+
+<table ng-table="ctrl.tableParams" class="table table-condensed table-bordered table-striped" show-filter="true">
+<!--	<table class="table table-stripe"> -->
+     <!--   <thead> -->
+     <!--       <tr> -->
+     <!--           <th>Name</th> -->
+     <!--           <th>Ticker</th> -->
+     <!--           <th>Starting BTC</th> -->
+     <!--           <th>Current BTC</th> -->
+     <!--           <th>%CHANGE</th> -->
+     <!--       </tr> -->
+    <!--    </thead> -->
+        <tbody>
+            <tr ng-repeat="c in $data">
+                <td data-title="'Name'" sortable="'Name'"> {{c.Name }}</td>
+	        <td data-title="'Position'" sortable="'Position'"> {{c.Position }}</td>
+                <td data-title="'Ticker'" sortable="'Ticker'"> {{ c.Ticker }} </td>
+                <td data-title="'Starting BTC'" sortable="'StartBtc'"> {{ c.StartBtc | number:8 }} </td>
+                <td data-title="'Current BTC'" sortable="'CurrentBtc'"> {{ c.CurrentBtc | number:8 }} </td>
+		<td data-title="'Change'" sortable="'Change'"> {{ c.Change | number:8 }} </td> 
+		<td data-title="'Gain'" sortable="'Gain'"> {{ c.Gain | number:8 }} </td> 
+            </tr>
+        </tbody>
+    </table>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>	
+	<script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("myapp", ["ngTable"]);
+        app.controller("tableController",function ($scope, $http, NgTableParams) {
+			var self = this;
+          
+  		  var challengers = [{
+                'Name': 'Kalpesh Khatri',
+		'Position': 'Long',
+		'PosIndex': 1,
+                'Ticker': 'Ethereum-Classic',
+                'StartBtc': 0.00367575,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'James Banner',
+		'Position': 'Short',    
+		'PosIndex': -1,
+                'Ticker': 'Jesus-coin',
+                'StartBtc': 0.00000015,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'Tim Hegh',
+		'Position': 'Long',
+		'PosIndex': 1,
+                'Ticker': 'Ripple',
+                'StartBtc': 0.00012022,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'Kim Tran',
+		'Position': 'Long',
+		'PosIndex': 1,
+                'Ticker': 'Tenx',
+                'StartBtc': 0.00020492,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'Andrea Sodini',
+		'Position': 'Long',
+		'PosIndex': 1,
+                'Ticker': 'Cardano',
+                'StartBtc': 0.00004165,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'David Chung',
+		'Position': 'Long',
+		'PosIndex': 1,
+                'Ticker': 'Litecoin',
+                'StartBtc': 0.02241140,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'David Dickson',
+		'Position': 'Long',
+		'PosIndex': 1,
+                'Ticker': 'Steem',
+                'StartBtc': 0.00047989,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'Jack Parker',
+		'Position': 'Short',
+		'PosIndex': -1,
+                'Ticker': 'Bitcoin-cash',
+                'StartBtc': 0.14339400,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'Robert Patterson',
+		'Position': 'Short',
+	        'PosIndex': -1,
+                'Ticker': 'Zclassic',
+                'StartBtc': 0.01820100,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }, {
+                'Name': 'Joel Akins',
+		'Position': 'Long',
+		'PosIndex': 1,
+                'Ticker': 'Dragonchain',
+                'StartBtc': 0.00021553,
+                'CurrentBtc': '0',
+		'Change' :0,
+		'Gain' :0,
+            }
+				    
+				    
+				    ];
+			
+		//	this.tableParams = new NgTableParams({}, { dataset: challengers});
+		
+		//	$scope.challengers = challengers;
+
+            var promise = [];
+            challengers.forEach(function(c) {
+                promise.push(SetBtcPrice(c));
+            });
+
+            Promise.all(promise).then(function() {		
+              //  $scope.challengers = challengers;
+			//	this.tableParams = new NgTableParams({ sorting: { Change: "desc" }},
+			//{ dataset: challengers});
+			  self.tableParams.sorting('Change', 'asc' );
+            });
+
+		this.tableParams = new NgTableParams({ sorting: { Name: "asc" }},
+			{ dataset: challengers});
+	
+            function SetBtcPrice(challenger) {
+
+              return  $http.get("https://api.coinmarketcap.com/v1/ticker/" + challenger.Ticker + "/")
+                    .then(function(response) {
+                        challenger.CurrentBtc = response.data[0].price_btc;
+			challenger.Change = (((challenger.CurrentBtc-challenger.StartBtc)/challenger.StartBtc)*100);
+		        challenger.Gain = challenger.Change*challenger.PosIndex;
+		  
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>
